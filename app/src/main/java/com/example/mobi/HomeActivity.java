@@ -11,12 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView welcomeText;
-    TextView txtBalance;
     Button shopButton;
-    Button searchButton;
-    Button historyButton;
-    Button settingsButton;
-    Button offersButton;
+    //Button offersButton;
     Button helpButton;
     Button exitButton;
     private PreferenceHelper preferenceHelper;
@@ -30,31 +26,19 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        txtBalance = (TextView) findViewById(R.id.txtbalance);
         welcomeText = (TextView) findViewById(R.id.welcometxt);
 
-        welcomeText.setText("Welcome back, Louis!");// should display session username
-        txtBalance.setText("Account Balance: 2,000");// should display session balance
 
         Typeface appleFont= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
         welcomeText.setTypeface(appleFontBold);
-        txtBalance.setTypeface(appleFontBold);
+
 
         shopButton = (Button) findViewById(R.id.btnShop);
         shopButton.setTypeface(appleFont);
 
-        searchButton = (Button) findViewById(R.id.btnSearch);
-        searchButton.setTypeface(appleFont);
-
-        historyButton = (Button) findViewById(R.id.btnHistory);
-        historyButton.setTypeface(appleFont);
-
-        settingsButton = (Button) findViewById(R.id.btnSettings);
-        settingsButton.setTypeface(appleFont);
-
-        offersButton = (Button) findViewById(R.id.btnOffers);
-        offersButton.setTypeface(appleFont);
+/*        offersButton = (Button) findViewById(R.id.btnOffers);
+        offersButton.setTypeface(appleFont);*/
 
         helpButton = (Button) findViewById(R.id.btnHelp);
         helpButton.setTypeface(appleFont);
