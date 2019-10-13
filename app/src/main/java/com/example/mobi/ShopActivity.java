@@ -24,7 +24,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
     Button buttonPay;
     private TextView textViewName, textViewAddress;
     ListView myCart;
-    TextView total, tvTitle, tvBalance;
+    TextView total, tvTitle;
 
     int totalAmount;
     int counter;
@@ -46,7 +46,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         myCart = (ListView) findViewById(R.id.shoppingCart);
         total = (TextView) findViewById(R.id.tvTotal);
         tvTitle = (TextView) findViewById(R.id.textView2);
-        tvBalance = (TextView)findViewById(R.id.tvBalance);
+
 
         arrayList = new ArrayList<String>();
         adapter = new ArrayAdapter<>(ShopActivity.this, android.R.layout.simple_list_item_1,arrayList);
@@ -56,7 +56,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
         buttonScan.setTypeface(appleFontRegular);
         buttonPay.setTypeface(appleFontRegular);
-        tvBalance.setTypeface(appleFontBold);
+
 
         total.setTypeface(appleFontBold);
         //intializing scan object

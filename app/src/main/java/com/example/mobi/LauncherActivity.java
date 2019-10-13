@@ -99,9 +99,6 @@ public class LauncherActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent( LauncherActivity.this, HomeActivity.class));
                 break;
 
-            case R.id.btnCreate:
-                startActivity(new Intent( LauncherActivity.this, RegisterActivity.class));
-                break;
 
             default:
                 break;
