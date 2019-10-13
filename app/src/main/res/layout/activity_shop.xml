@@ -10,10 +10,11 @@
     <Button
         android:id="@+id/buttonScan"
         android:layout_width="131dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="60dp"
         android:layout_alignStart="@+id/shoppingCart"
-        android:layout_marginBottom="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="94dp"
         android:background="@drawable/shop_buttons"
         android:text="Scan iTEM"
         android:textColor="@color/white" />
@@ -21,26 +22,26 @@
     <Button
         android:id="@+id/buttonPay"
         android:layout_width="131dp"
-        android:layout_height="40dp"
-        android:layout_alignEnd="@+id/shoppingCart"
+        android:layout_height="60dp"
         android:layout_alignTop="@+id/buttonScan"
+        android:layout_alignEnd="@+id/shoppingCart"
         android:background="@drawable/shop_buttons"
         android:text="PROCEED TO PAY"
         android:textColor="@color/white" />
 
     <ListView
         android:id="@+id/shoppingCart"
-        android:layout_width="308dp"
-        android:layout_height="210dp"
+        android:layout_width="359dp"
+        android:layout_height="316dp"
         android:layout_centerInParent="true"
         android:scrollbarAlwaysDrawHorizontalTrack="false" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="373dp"
+        android:layout_height="51dp"
         android:layout_above="@+id/shoppingCart"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="17dp"
         android:text="Shopping Cart"
         android:textColor="@color/black"
         android:textSize="24dp" />
@@ -58,18 +59,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="71dp"
-        android:layout_height="65dp"
+        android:layout_width="95dp"
+        android:layout_height="124dp"
         android:layout_above="@+id/tvBalance"
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/ic_logo" />
-    <TextView
-        android:id="@+id/tvBalance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:text="Account Balance: 2,001"
-        android:textSize="15sp" />
 </RelativeLayout>

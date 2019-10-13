@@ -24,7 +24,6 @@
         <activity android:name=".ShopActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".ReceiptActivity" />
-        <activity android:name=".RegisterActivity" />
         <activity android:name=".HomeActivity2"></activity>
     </application>
 
