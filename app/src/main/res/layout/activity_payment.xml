@@ -45,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="187dp"
         android:layout_above="@+id/tvTotal"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="-11dp"
         android:scrollbarAlwaysDrawHorizontalTrack="false" />
 
     <TextView
@@ -60,28 +60,31 @@
 
     <TextView
         android:id="@+id/tvTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="379dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="313dp"
+        android:layout_marginBottom="233dp"
         android:text="TOTAL:"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="71dp"
-        android:layout_height="65dp"
+        android:layout_width="116dp"
+        android:layout_height="118dp"
         android:layout_above="@+id/textView2"
         android:layout_centerHorizontal="true"
         app:srcCompat="@drawable/ic_logo" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="370dp"
-        android:layout_height="115dp"
+    <TextView
+        android:id="@+id/txtPaybill"
+        android:layout_width="372dp"
+        android:layout_height="37dp"
         android:layout_above="@+id/tvTotal"
-        android:layout_marginBottom="-166dp"
-        app:srcCompat="@drawable/ic_mpesa_logo" />
+        android:layout_marginBottom="-83dp"
+        android:text="Paybill Number: 123456"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

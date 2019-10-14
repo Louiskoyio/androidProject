@@ -24,7 +24,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
 
     Button buttonReceipt,buttonBack,buttonPay;
-    private TextView textViewName, textViewAddress;
+    private TextView textViewName, textViewAddress,txtPaybill;
     ListView myCart;
     TextView total, tvTitle;
     ArrayList<String> arrayList;
@@ -42,6 +42,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         myCart = (ListView) findViewById(R.id.shoppingCart);
         total = (TextView) findViewById(R.id.tvTotal);
         tvTitle = (TextView) findViewById(R.id.textView2);
+        txtPaybill = (TextView) findViewById(R.id.txtPaybill);
 
 
         buttonPay.setOnClickListener(this);
@@ -69,7 +70,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
         buttonBack.setTypeface(appleFontRegular);
         buttonPay.setTypeface(appleFontRegular);
-
+        txtPaybill.setTypeface(appleFontRegular);
         total.setTypeface(appleFontBold);
         total.setText("TOTAL: 1,170.00");
 
