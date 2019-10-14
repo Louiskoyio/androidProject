@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class ReceiptActivity extends AppCompatActivity {
-    TextView tvBalance;
+
     Button buttonHome,buttonPay;
     private TextView textViewName, textViewAddress;
     ListView myCart;
@@ -32,7 +32,6 @@ public class ReceiptActivity extends AppCompatActivity {
         myCart = (ListView) findViewById(R.id.shoppingCart);
         total = (TextView) findViewById(R.id.tvTotal);
         tvTitle = (TextView) findViewById(R.id.textView2);
-        tvBalance = (TextView)findViewById(R.id.tvBalance);
         buttonHome = (Button) findViewById(R.id.buttonReceipt);
 
         String[] bill = new String[] {
@@ -55,7 +54,6 @@ public class ReceiptActivity extends AppCompatActivity {
         Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
         buttonHome.setTypeface(appleFontRegular);
-        tvBalance.setTypeface(appleFontBold);
         total.setTypeface(appleFontBold);
         total.setText("TOTAL: 1,170.00");
 
