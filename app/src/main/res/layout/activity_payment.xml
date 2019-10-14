@@ -10,9 +10,11 @@
     <Button
         android:id="@+id/buttonReceipt"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignEnd="@+id/shoppingCart"
+        android:layout_height="60dp"
         android:layout_alignTop="@+id/buttonBack"
+        android:layout_alignEnd="@+id/shoppingCart"
+
+        android:layout_marginEnd="0dp"
         android:background="@drawable/shop_buttons"
         android:text="receipt"
         android:textColor="@color/white" />
@@ -20,21 +22,19 @@
     <Button
         android:id="@+id/buttonBack"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_height="60dp"
         android:layout_alignStart="@+id/shoppingCart"
-        android:layout_marginBottom="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="100dp"
         android:background="@drawable/shop_buttons"
-
         android:text="back"
         android:textColor="@color/white" />
 
     <Button
         android:id="@+id/buttonPay"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:layout_alignTop="@+id/buttonReceipt"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/shop_buttons"
         android:text="pay "
         android:textColor="@color/white" />
@@ -44,7 +44,7 @@
         android:layout_width="308dp"
         android:layout_height="183dp"
         android:layout_above="@+id/tvTotal"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:scrollbarAlwaysDrawHorizontalTrack="false" />
 
     <TextView
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/shoppingCart"
-        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
         android:text="Your Bill:"
         android:textColor="@color/black"
         android:textSize="24dp" />
@@ -62,8 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="104dp"
+        android:layout_marginBottom="313dp"
         android:text="TOTAL:"
         android:textColor="@color/black"
         android:textSize="20dp" />
@@ -77,14 +76,4 @@
         android:layout_marginBottom="-156dp"
         app:srcCompat="@drawable/ic_logo" />
 
-    <TextView
-        android:id="@+id/tvBalance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="156dp"
-        android:text="Account Balance: 2,001"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
 </RelativeLayout>
