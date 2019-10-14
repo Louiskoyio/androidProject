@@ -84,7 +84,7 @@ public class LauncherActivity extends AppCompatActivity implements View.OnClickL
 
 
     public void onClick(View v) {
-        //initiating the qr code scan
+
 
         switch (v.getId()) {
 
