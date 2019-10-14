@@ -76,4 +76,12 @@
         android:layout_marginBottom="-156dp"
         app:srcCompat="@drawable/ic_logo" />
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="290dp"
+        android:layout_height="113dp"
+        android:layout_above="@+id/tvTotal"
+        android:layout_marginBottom="-165dp"
+        app:srcCompat="@drawable/ic_mpesa_logo" />
+
 </RelativeLayout>
