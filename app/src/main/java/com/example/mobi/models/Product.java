@@ -7,13 +7,13 @@ public class Product {
     private String name;
     private Double price;
     private String brand;
-    private String category;
 
-    public Product(String name, Double price, String brand, String category) {
+
+    public Product(String name, Double price, String brand) {
         this.name = name;
         this.price = price;
         this.brand = brand;
-        this.category = category;
+
     }
 
     public int getProduct_id() {
@@ -48,13 +48,6 @@ public class Product {
         this.brand = brand;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -64,12 +57,11 @@ public class Product {
         return product_id == product.product_id &&
                 Objects.equals(name, product.name) &&
                 Objects.equals(price, product.price) &&
-                Objects.equals(brand, product.brand) &&
-                Objects.equals(category, product.category);
+                Objects.equals(brand, product.brand);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(product_id, name, price, brand, category);
+        return Objects.hash(product_id, name, price, brand);
     }
 }
