@@ -10,10 +10,17 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 //implementing onclicklistener
@@ -25,8 +32,8 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewName, textViewAddress;
     ListView myCart;
     TextView total, tvTitle;
-
-    int totalAmount;
+    DatabaseReference ref;
+    Double totalAmount=0.0;
     int counter;
     ArrayList<String> shoppingCartArr;
     ArrayAdapter<String> adapter;
@@ -78,23 +85,25 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Product Not Found", Toast.LENGTH_LONG).show();
             } else {
                 //if qr contains data
+                ref = FirebaseDatabase.getInstance().getReference().child("Products").child(result.getContents().toString());
+                ref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        String brand = dataSnapshot.child("brand").getValue().toString();
+                        String name = dataSnapshot.child("name").getValue().toString();
+                        Double price = Double.parseDouble(dataSnapshot.child("price").getValue().toString());
 
+                        shoppingCartArr.add(brand + " " + name + " " + price);
+                        adapter.notifyDataSetChanged();
+                        totalAmount = totalAmount + price;
+                        total.setText(totalAmount.toString());
+                    }
 
-                shoppingCartArr.add(result.getContents().toString());
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-
-                adapter.notifyDataSetChanged();
-
-                if (counter == 0)
-                total.setText("TOTAL: 500.00");
-
-                if (counter > 0)
-                    total.setText("TOTAL: 570.00");
-
-                if (counter > 1)
-                    total.setText("TOTAL: 1,170.00");
-
-                counter++;
+                    }
+                });
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
