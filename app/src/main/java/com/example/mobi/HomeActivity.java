@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
             case R.id.btnShop:
-                startActivity(new Intent(HomeActivity.this, InsertActivity.class));
+                startActivity(new Intent(HomeActivity.this, ShopActivity.class));
                 break;
 
 
