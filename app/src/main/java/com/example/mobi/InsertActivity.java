@@ -34,7 +34,7 @@ public class InsertActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Double price = Double.parseDouble(etPrice.getText().toString().trim());
                 String name = etName.getText().toString().trim();
-                String brand = etPrice.getText().toString().trim();
+                String brand = etBrand.getText().toString().trim();
 
                 product.setPrice(price);
                 product.setBrand(brand);
