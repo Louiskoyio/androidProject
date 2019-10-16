@@ -28,7 +28,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
 
     int totalAmount;
     int counter;
-    ArrayList<String> arrayList;
+    ArrayList<String> shoppingCartArr;
     ArrayAdapter<String> adapter;
 
     //qr code scanner object
@@ -48,8 +48,8 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         tvTitle = (TextView) findViewById(R.id.textView2);
 
 
-        arrayList = new ArrayList<String>();
-        adapter = new ArrayAdapter<>(ShopActivity.this, android.R.layout.simple_list_item_1,arrayList);
+        shoppingCartArr = new ArrayList<String>();
+        adapter = new ArrayAdapter<>(ShopActivity.this, android.R.layout.simple_list_item_1,shoppingCartArr);
         myCart.setAdapter(adapter);
 
         Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
@@ -80,7 +80,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                 //if qr contains data
 
 
-                arrayList.add(result.getContents().toString());
+                shoppingCartArr.add(result.getContents().toString());
 
 
                 adapter.notifyDataSetChanged();

@@ -60,7 +60,7 @@ public class ReceiptActivity extends AppCompatActivity {
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ReceiptActivity.this, HomeActivity2.class));
+                startActivity(new Intent(ReceiptActivity.this, HomeActivity.class));
             }
 
         });
