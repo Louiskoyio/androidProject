@@ -23,7 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
 
-    Button buttonReceipt,buttonBack,buttonPay;
+    Button buttonReceipt,buttonPay;
     private TextView textViewName, textViewAddress,txtPaybill;
     ListView myCart;
     TextView total, tvTitle;
@@ -38,7 +38,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         buttonReceipt = (Button) findViewById(R.id.buttonReceipt);
         buttonPay = (Button) findViewById(R.id.buttonPay);
-        buttonBack = (Button) findViewById(R.id.buttonBack);
+
         myCart = (ListView) findViewById(R.id.shoppingCart);
         total = (TextView) findViewById(R.id.tvTotal);
         tvTitle = (TextView) findViewById(R.id.textView2);
@@ -68,7 +68,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
-        buttonBack.setTypeface(appleFontRegular);
+
         buttonPay.setTypeface(appleFontRegular);
         txtPaybill.setTypeface(appleFontRegular);
         total.setTypeface(appleFontBold);
