@@ -104,52 +104,17 @@ public class LauncherActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
-    private void login() throws IOException, JSONException {
 
-        if (!MobiUtils.isNetworkAvailable(LauncherActivity.this)) {
-            Toast.makeText(LauncherActivity.this, "Connect to the internet to continue", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        MobiUtils.showSimpleProgressDialog(LauncherActivity.this);
-        final HashMap<String, String> map = new HashMap<>();
-        map.put(MobiConstants.Params.PHONENUMBER, etphonenumber.getText().toString());
-        map.put(MobiConstants.Params.PASSWORD, etpassword.getText().toString());
-        new AsyncTask<Void, Void, String>(){
-            protected String doInBackground(Void[] params) {
-                String response="";
-                try {
-                    HttpRequest req = new HttpRequest(MobiConstants.ServiceType.LOGIN);
-                    response = req.prepare(HttpRequest.Method.POST).withData(map).sendAndReadString();
-                } catch (Exception e) {
-                    response=e.getMessage();
-                }
-                return response;
-            }
-            protected void onPostExecute(String result) {
-                //do something with response
-                Log.d("newwwss", result);
-                onTaskCompleted(result,LoginTask);
-            }
-        }.execute();
-    }
     private void onTaskCompleted(String response, int task) {
         Log.d("responsejson", response.toString());
-        MobiUtils.removeSimpleProgressDialog();  //will remove progress dialog
         switch (task) {
             case LoginTask:
 
-                if (parseContent.isSuccess(response)) {
-
-                    parseContent.saveInfo(response);
-                    Toast.makeText(LauncherActivity.this, "Login Successful!", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LauncherActivity.this,HomeActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     this.finish();
 
-                }else {
-                    Toast.makeText(LauncherActivity.this, parseContent.getErrorMessage(response), Toast.LENGTH_SHORT).show();
-                }
         }
     }
 

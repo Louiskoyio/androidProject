@@ -15,14 +15,33 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="118dp"
+            android:layout_height="103dp"
             app:srcCompat="@drawable/ic_logo" />
+
+        <TextView
+            android:id="@+id/txtPaybill"
+            android:layout_width="372dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="20dp"
+            android:text="Enter phone number(format: 254XXXXXXXX)"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etPhonenumber"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="376dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
             android:text="Your Bill:"
             android:textColor="@color/black"
             android:textSize="24dp"
@@ -41,29 +60,12 @@
             android:id="@+id/tvTotal"
             android:layout_width="379dp"
             android:layout_height="50dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="TOTAL:"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/txtPaybill"
-            android:layout_width="372dp"
-            android:layout_height="37dp"
-            android:text="Paybill Number: 123456"
-            android:textColor="@color/black"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etPhonenumber"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Phone Number" />
 
         <Button
             android:id="@+id/buttonPay"
