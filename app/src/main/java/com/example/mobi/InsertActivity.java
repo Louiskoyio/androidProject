@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.mobi.models.Payments;
 import com.example.mobi.models.Product;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,7 +21,7 @@ public class InsertActivity extends AppCompatActivity {
     EditText etBrand, etName, etPrice;
     Button btnAdd;
     DatabaseReference ref;
-    Product product;
+    Payments payment;
     long maxid=0;
 
     @Override
@@ -32,8 +33,8 @@ public class InsertActivity extends AppCompatActivity {
         etPrice = (EditText) findViewById(R.id.etPrice);
         btnAdd = (Button) findViewById(R.id.btnAddProduct);
 
-        product = new Product();
-        ref = FirebaseDatabase.getInstance().getReference().child("Products");
+        payment = new Payments();
+        ref = FirebaseDatabase.getInstance().getReference().child("Payments");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -56,10 +57,10 @@ public class InsertActivity extends AppCompatActivity {
                 String name = etName.getText().toString().trim();
                 String brand = etBrand.getText().toString().trim();
 
-                product.setPrice(price);
-                product.setBrand(brand);
-                product.setName(name);
-                ref.child(String.valueOf(maxid+1)).setValue(product);
+                payment.setAmount(price);
+                payment.setPhone(brand);
+                payment.setReceipt(name);
+                ref.child(name).setValue(payment);
                 Toast.makeText(InsertActivity.this, "Imeweza bro!", Toast.LENGTH_SHORT).show();
             }
         });

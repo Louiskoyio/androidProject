@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +39,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
     int counter;
     ArrayList<String> shoppingCartArr;
     ArrayAdapter<String> adapter;
+    private static DecimalFormat df2 = new DecimalFormat("#.##");
 
     //qr code scanner object
     private IntentIntegrator qrScan;
@@ -93,10 +96,10 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                         String name = dataSnapshot.child("name").getValue().toString();
                         Double price = Double.parseDouble(dataSnapshot.child("price").getValue().toString());
 
-                        shoppingCartArr.add(brand + " " + name + " " + price);
+                        shoppingCartArr.add(brand + " " + name + "\t\t\t\t\t" + price);
                         adapter.notifyDataSetChanged();
                         totalAmount = totalAmount + price;
-                        total.setText(totalAmount.toString());
+                        total.setText("TOTAL: " + totalAmount.toString());
                     }
 
                     @Override
