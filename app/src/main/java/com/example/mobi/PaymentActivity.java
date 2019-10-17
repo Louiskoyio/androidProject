@@ -21,10 +21,10 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView tvBalance;
 
-    Button buttonReceipt,buttonBack,buttonPay;
-    private TextView textViewName, textViewAddress;
+
+    Button buttonReceipt,buttonPay;
+    private TextView textViewName, textViewAddress,txtPaybill;
     ListView myCart;
     TextView total, tvTitle;
     ArrayList<String> arrayList;
@@ -38,11 +38,12 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         buttonReceipt = (Button) findViewById(R.id.buttonReceipt);
         buttonPay = (Button) findViewById(R.id.buttonPay);
-        buttonBack = (Button) findViewById(R.id.buttonBack);
+
         myCart = (ListView) findViewById(R.id.shoppingCart);
         total = (TextView) findViewById(R.id.tvTotal);
         tvTitle = (TextView) findViewById(R.id.textView2);
-        tvBalance = (TextView)findViewById(R.id.tvBalance);
+        txtPaybill = (TextView) findViewById(R.id.txtPaybill);
+
 
         buttonPay.setOnClickListener(this);
         buttonReceipt.setOnClickListener(this);
@@ -67,9 +68,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
-        buttonBack.setTypeface(appleFontRegular);
+
         buttonPay.setTypeface(appleFontRegular);
-        tvBalance.setTypeface(appleFontBold);
+        txtPaybill.setTypeface(appleFontRegular);
         total.setTypeface(appleFontBold);
         total.setText("TOTAL: 1,170.00");
 

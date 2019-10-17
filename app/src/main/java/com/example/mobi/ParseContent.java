@@ -63,8 +63,7 @@ public class ParseContent {
                 for (int i = 0; i < dataArray.length(); i++) {
 
                     JSONObject dataobj = dataArray.getJSONObject(i);
-                    preferenceHelper.putFirstName(dataobj.getString(MobiConstants.Params.FIRSTNAME));
-                    preferenceHelper.putBalance(dataobj.getString(MobiConstants.Params.BALANCE));
+
                 }
             }
         } catch (JSONException e) {

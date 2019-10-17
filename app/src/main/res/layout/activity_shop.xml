@@ -44,18 +44,20 @@
         android:layout_marginBottom="17dp"
         android:text="Shopping Cart"
         android:textColor="@color/black"
-        android:textSize="24dp" />
+        android:textSize="24dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="359dp"
+        android:layout_height="32dp"
         android:layout_below="@+id/shoppingCart"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="-2dp"
         android:text="TOTAL:"
+        android:textColor="@color/black"
         android:textSize="20dp"
-        android:textColor="@color/black"/>
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageView"
