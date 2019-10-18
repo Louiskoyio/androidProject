@@ -48,10 +48,10 @@ public class InsertActivity extends AppCompatActivity {
             }
         });
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+        btnAdd.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
                 Double price = Double.parseDouble(etPrice.getText().toString().trim());
                 String name = etName.getText().toString().trim();

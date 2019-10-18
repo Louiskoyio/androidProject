@@ -28,10 +28,12 @@ import com.example.mobi.mpesa.ApiClient;
 import com.example.mobi.mpesa.Utils;
 import com.example.mobi.mpesa.model.AccessToken;
 import com.example.mobi.mpesa.model.STKPush;
-import com.google.android.gms.common.api.Response;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import timber.log.Timber;
 
 import static com.example.mobi.Constants.BUSINESS_SHORT_CODE;
 import static com.example.mobi.Constants.CALLBACKURL;
@@ -115,8 +117,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         mApiClient.setGetAccessToken(true);
         mApiClient.mpesaService().getAccessToken().enqueue(new Callback<AccessToken>() {
             @Override
-            public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
-
+            public void onResponse(Call<AccessToken> call, retrofit2.Response<AccessToken> response) {
                 if (response.isSuccessful()) {
                     mApiClient.setAuthToken(response.body().accessToken);
                 }
@@ -172,9 +173,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
     mApiClient.setGetAccessToken(false);
 
-            mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
+    mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
         @Override
-        public void onResponse(@NonNull Call<STKPush> call, @NonNull Response<STKPush> response) {
+        public void onResponse(Call<STKPush> call, retrofit2.Response<STKPush> response) {
             mProgressDialog.dismiss();
             try {
                 if (response.isSuccessful()) {
@@ -185,6 +186,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             } catch (Exception e) {
                 e.printStackTrace();
             }
+
         }
 
         @Override

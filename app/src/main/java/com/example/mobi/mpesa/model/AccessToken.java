@@ -1,9 +1,10 @@
 package com.example.mobi.mpesa.model;
 
+import com.google.android.gms.common.api.Result;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class AccessToken {
+public class AccessToken{
     @SerializedName("access_token")
     @Expose
     public String accessToken;
