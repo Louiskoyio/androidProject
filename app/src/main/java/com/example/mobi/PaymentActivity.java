@@ -20,15 +20,21 @@ import java.util.Arrays;
 import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 
+import butterknife.BindView;
+
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
+    @BindView(R.id.buttonReceipt) Button buttonReceipt;
+    @BindView(R.id.buttonPay) Button buttonPay;
+    @BindView(R.id.btnExit) Button exitButton;
+    @BindView(R.id.btnExit) TextView textViewName;
+    @BindView(R.id.btnExit) TextView textViewAddress;
+    @BindView(R.id.txtPaybill) TextView txtPaybill;
+    @BindView(R.id.tvTotal) TextView total;
+    @BindView(R.id.textView2) TextView tvTitle;
+    @BindView(R.id.shoppingCart) ListView myCart;
 
-    Button buttonReceipt,buttonPay;
-    private TextView textViewName, textViewAddress,txtPaybill;
-    ListView myCart;
-    TextView total, tvTitle;
-    ArrayList<String> arrayList;
-    ArrayAdapter<String> adapter;
+
 
 
     @Override
@@ -36,13 +42,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        buttonReceipt = (Button) findViewById(R.id.buttonReceipt);
-        buttonPay = (Button) findViewById(R.id.buttonPay);
-
-        myCart = (ListView) findViewById(R.id.shoppingCart);
-        total = (TextView) findViewById(R.id.tvTotal);
-        tvTitle = (TextView) findViewById(R.id.textView2);
-        txtPaybill = (TextView) findViewById(R.id.txtPaybill);
 
 
         buttonPay.setOnClickListener(this);
@@ -62,8 +61,8 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         myCart.setAdapter(arrayAdapter);
 
 
-        arrayList = new ArrayList<String>();
-        adapter = new ArrayAdapter<>(PaymentActivity.this, android.R.layout.simple_list_item_1,arrayList);
+        ArrayList arrayList = new ArrayList<String>();
+        ArrayAdapter adapter = new ArrayAdapter<>(PaymentActivity.this, android.R.layout.simple_list_item_1,arrayList);
 
 
         Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
@@ -73,15 +72,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         txtPaybill.setTypeface(appleFontRegular);
         total.setTypeface(appleFontBold);
         total.setText("TOTAL: 1,170.00");
-
-
-
-
-
-
-
-
-
     }
 
 
