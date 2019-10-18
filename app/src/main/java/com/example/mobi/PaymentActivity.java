@@ -20,6 +20,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobi.mpesa.ApiClient;
@@ -53,9 +55,15 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
 
+        mProgressDialog = new ProgressDialog(this);
+        mApiClient = new ApiClient();
+        mApiClient.setIsDebug(true);
+
 
         buttonPay.setOnClickListener(this);
         buttonReceipt.setOnClickListener(this);
+
+        getAccessToken();
 
         String[] bill = new String[] {
                 "Samsung USB Type C Charger              500.00",
@@ -82,6 +90,24 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         txtPaybill.setTypeface(appleFontRegular);
         total.setTypeface(appleFontBold);
         total.setText("TOTAL: 1,170.00");
+    }
+
+    public void getAccessToken() {
+        mApiClient.setGetAccessToken(true);
+        mApiClient.mpesaService().getAccessToken().enqueue(new Callback<AccessToken>() {
+            @Override
+            public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
+
+                if (response.isSuccessful()) {
+                    mApiClient.setAuthToken(response.body().accessToken);
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
+
+            }
+        });
     }
 
 
