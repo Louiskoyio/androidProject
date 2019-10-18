@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.btnShop) Button shopButton;
@@ -23,6 +24,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        ButterKnife.bind(this);
 
         preferenceHelper = new PreferenceHelper(this);
 

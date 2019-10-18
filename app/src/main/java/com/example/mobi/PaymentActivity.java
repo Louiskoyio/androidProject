@@ -2,6 +2,7 @@ package com.example.mobi;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -20,10 +22,18 @@ import java.util.Arrays;
 import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mobi.mpesa.ApiClient;
+
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ApiClient mApiClient;
+    private ProgressDialog mProgressDialog;
+
+
+    @BindView(R.id.etPhonenumber) EditText phonenumber;
     @BindView(R.id.buttonReceipt) Button buttonReceipt;
     @BindView(R.id.buttonPay) Button buttonPay;
     @BindView(R.id.btnExit) Button exitButton;
@@ -41,7 +51,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
-
+        ButterKnife.bind(this);
 
 
         buttonPay.setOnClickListener(this);
