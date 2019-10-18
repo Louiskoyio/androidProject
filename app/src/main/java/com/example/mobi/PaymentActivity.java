@@ -25,28 +25,47 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mobi.mpesa.ApiClient;
+import com.example.mobi.mpesa.Utils;
+import com.example.mobi.mpesa.model.AccessToken;
+import com.example.mobi.mpesa.model.STKPush;
+import com.google.android.gms.common.api.Response;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.mobi.Constants.BUSINESS_SHORT_CODE;
+import static com.example.mobi.Constants.CALLBACKURL;
+import static com.example.mobi.Constants.PARTYB;
+import static com.example.mobi.Constants.PASSKEY;
+import static com.example.mobi.Constants.TRANSACTION_TYPE;
 
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ApiClient mApiClient;
     private ProgressDialog mProgressDialog;
+    Double totalAmount = 1170.00;
 
 
-    @BindView(R.id.etPhonenumber) EditText phonenumber;
-    @BindView(R.id.buttonReceipt) Button buttonReceipt;
-    @BindView(R.id.buttonPay) Button buttonPay;
-    @BindView(R.id.btnExit) Button exitButton;
-    @BindView(R.id.btnExit) TextView textViewName;
-    @BindView(R.id.btnExit) TextView textViewAddress;
-    @BindView(R.id.txtPaybill) TextView txtPaybill;
-    @BindView(R.id.tvTotal) TextView total;
-    @BindView(R.id.textView2) TextView tvTitle;
-    @BindView(R.id.shoppingCart) ListView myCart;
-
-
+    @BindView(R.id.etPhonenumber)
+    EditText phonenumber;
+    @BindView(R.id.buttonReceipt)
+    Button buttonReceipt;
+    @BindView(R.id.buttonPay)
+    Button buttonPay;
+    @BindView(R.id.btnExit)
+    Button exitButton;
+    @BindView(R.id.btnExit)
+    TextView textViewName;
+    @BindView(R.id.btnExit)
+    TextView textViewAddress;
+    @BindView(R.id.txtPaybill)
+    TextView txtPaybill;
+    @BindView(R.id.tvTotal)
+    TextView total;
+    @BindView(R.id.textView2)
+    TextView tvTitle;
+    @BindView(R.id.shoppingCart)
+    ListView myCart;
 
 
     @Override
@@ -65,7 +84,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         getAccessToken();
 
-        String[] bill = new String[] {
+        String[] bill = new String[]{
                 "Samsung USB Type C Charger              500.00",
                 "SparkleFresh Drinking Water 1 Litre       70.00",
                 "Logitech Wireless Mouse                       600.00"
@@ -80,11 +99,11 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
 
         ArrayList arrayList = new ArrayList<String>();
-        ArrayAdapter adapter = new ArrayAdapter<>(PaymentActivity.this, android.R.layout.simple_list_item_1,arrayList);
+        ArrayAdapter adapter = new ArrayAdapter<>(PaymentActivity.this, android.R.layout.simple_list_item_1, arrayList);
 
 
-        Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
-        Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
+        Typeface appleFontRegular = Typeface.createFromAsset(getAssets(), "fonts/SF-Regular.ttf");
+        Typeface appleFontBold = Typeface.createFromAsset(getAssets(), "fonts/SF-Bold.ttf");
 
         buttonPay.setTypeface(appleFontRegular);
         txtPaybill.setTypeface(appleFontRegular);
@@ -111,121 +130,14 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-        public void openDialog() {
-        Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
-        Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
-
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-
-        // Set Custom Title
-        TextView title = new TextView(this);
-        // Title Properties
-        title.setText("Confirm Transaction");
-        title.setPadding(10, 10, 10, 10);   // Set Position
-        title.setGravity(Gravity.CENTER);
-        title.setTextColor(Color.BLACK);
-        title.setTypeface(appleFontBold);
-        title.setTextSize(20);
-        alertDialog.setCustomTitle(title);
-
-        // Set Message
-        TextView msg = new TextView(this);
-        // Message Properties
-        msg.setTypeface(appleFontRegular);
-        msg.setText("Confirm transaction? \n\n\n Account Balance:\t2,001 \n Bill:\t1,170 \n New Account Balance:\t831");
-        msg.setGravity(Gravity.CENTER_HORIZONTAL);
-        msg.setTextColor(Color.BLACK);
-        alertDialog.setView(msg);
-
-        // Set Button
-        // you can more buttons
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"CONFIRM", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                confirmDialog();
-            }
-        });
-
-        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE,"CANCEL", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // Perform Action on Button
-            }
-        });
-
-        new Dialog(getApplicationContext());
-        alertDialog.show();
-
-        // Set Properties for OK Button
-        final Button okBT = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
-        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        okBT.setPadding(10, 10, 10, 10);   // Set Position
-        okBT.setTextColor(Color.GREEN);
-        okBT.setLayoutParams(neutralBtnLP);
-
-        final Button cancelBT = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-        LinearLayout.LayoutParams negBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
-        negBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        cancelBT.setTextColor(Color.RED);
-        cancelBT.setLayoutParams(negBtnLP);
-    }
-
-
-public void confirmDialog(){
-        Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
-        Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
-
-        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-
-        // Set Custom Title
-        TextView title = new TextView(this);
-        // Title Properties
-        title.setText("Confirm Transaction");
-        title.setPadding(10, 10, 10, 10);   // Set Position
-        title.setGravity(Gravity.CENTER);
-        title.setTextColor(Color.BLACK);
-        title.setTypeface(appleFontBold);
-        title.setTextSize(20);
-        alertDialog.setCustomTitle(title);
-
-        // Set Message
-        TextView msg = new TextView(this);
-        // Message Properties
-        msg.setTypeface(appleFontRegular);
-        msg.setText("Transacion Confirmed\nNew Account Balance:\t831");
-        msg.setGravity(Gravity.CENTER_HORIZONTAL);
-        msg.setTextColor(Color.BLACK);
-        alertDialog.setView(msg);
-
-        // Set Button
-        // you can more buttons
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL,"OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                buttonReceipt.setVisibility(View.VISIBLE);
-
-            }
-        });
-
-
-        new Dialog(getApplicationContext());
-        alertDialog.show();
-
-        // Set Properties for OK Button
-        final Button okBT = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
-        LinearLayout.LayoutParams neutralBtnLP = (LinearLayout.LayoutParams) okBT.getLayoutParams();
-        neutralBtnLP.gravity = Gravity.FILL_HORIZONTAL;
-        okBT.setPadding(400, 10, 10, 10);   // Set Position
-        okBT.setTextColor(Color.BLACK);
-        okBT.setLayoutParams(neutralBtnLP);
-
-    }
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
 
             case R.id.buttonPay:
-                openDialog();
+                String phone_number = phonenumber.getText().toString();
+                String amount = totalAmount.toString();
+                performSTKPush(phone_number, amount);
                 break;
 
             case R.id.buttonReceipt:
@@ -236,5 +148,56 @@ public void confirmDialog(){
                 break;
         }
     }
+
+    public void performSTKPush(String phone_number, String amount) {
+        mProgressDialog.setMessage("Processing your request");
+        mProgressDialog.setTitle("Please Wait...");
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.show();
+        String timestamp = Utils.getTimestamp();
+        STKPush stkPush = new STKPush(
+                BUSINESS_SHORT_CODE,
+                Utils.getPassword(BUSINESS_SHORT_CODE, PASSKEY, timestamp),
+                timestamp,
+                TRANSACTION_TYPE,
+                String.valueOf(amount),
+                Utils.sanitizePhoneNumber(phone_number),
+                PARTYB,
+                Utils.sanitizePhoneNumber(phone_number),
+                CALLBACKURL,
+                "test", //The account reference
+                "test"  //The transaction description
+        );
+
+
+    mApiClient.setGetAccessToken(false);
+
+            mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
+        @Override
+        public void onResponse(@NonNull Call<STKPush> call, @NonNull Response<STKPush> response) {
+            mProgressDialog.dismiss();
+            try {
+                if (response.isSuccessful()) {
+                    Timber.d("post submitted to API. %s", response.body());
+                } else {
+                    Timber.e("Response %s", response.errorBody().string());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
+            mProgressDialog.dismiss();
+            Timber.e(t);
+        }
+    });
 }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+}
