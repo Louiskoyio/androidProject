@@ -8,13 +8,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+import butterknife.BindView;
 
-    TextView welcomeText;
-    Button shopButton;
-    //Button offersButton;
-    Button helpButton;
-    Button exitButton;
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+    @BindView(R.id.btnShop) Button shopButton;
+    @BindView(R.id.btnHelp) Button helpButton;
+    @BindView(R.id.btnExit) Button exitButton;
+    @BindView(R.id.welcometxt) TextView welcomeText;
+
+
     private PreferenceHelper preferenceHelper;
 
     @Override
@@ -24,26 +26,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         preferenceHelper = new PreferenceHelper(this);
 
-
-
-        welcomeText = (TextView) findViewById(R.id.welcometxt);
-
-
         Typeface appleFont= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
+
+        //setting fonts
+
         welcomeText.setTypeface(appleFontBold);
-
-
-        shopButton = (Button) findViewById(R.id.btnShop);
         shopButton.setTypeface(appleFont);
-
-/*        offersButton = (Button) findViewById(R.id.btnOffers);
-        offersButton.setTypeface(appleFont);*/
-
-        helpButton = (Button) findViewById(R.id.btnHelp);
         helpButton.setTypeface(appleFont);
-
-        exitButton = (Button) findViewById(R.id.btnExit);
         exitButton.setTypeface(appleFont);
 
         shopButton.setOnClickListener(this);
