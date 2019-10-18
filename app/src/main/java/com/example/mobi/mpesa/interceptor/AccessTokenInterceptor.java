@@ -5,9 +5,12 @@ import android.util.Base64;
 import androidx.annotation.NonNull;
 
 import com.example.mobi.BuildConfig;
-import com.google.android.gms.common.api.Response;
 
 import java.io.IOException;
+
+import okhttp3.Interceptor;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class AccessTokenInterceptor implements Interceptor {
 
