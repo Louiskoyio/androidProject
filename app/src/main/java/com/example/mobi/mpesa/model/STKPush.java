@@ -4,28 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 public class STKPush {
 
-    @SerializedName("BusinessShortCode")
-    private String businessShortCode;
-    @SerializedName("Password")
-    private String password;
-    @SerializedName("Timestamp")
-    private String timestamp;
-    @SerializedName("TransactionType")
-    private String transactionType;
-    @SerializedName("Amount")
-    private String amount;
-    @SerializedName("PartyA")
-    private String partyA;
-    @SerializedName("PartyB")
-    private String partyB;
-    @SerializedName("PhoneNumber")
-    private String phoneNumber;
-    @SerializedName("CallBackURL")
-    private String callBackURL;
-    @SerializedName("AccountReference")
-    private String accountReference;
-    @SerializedName("TransactionDesc")
-    private String transactionDesc;
+    @SerializedName("businessShortCode") private String businessShortCode;
+    @SerializedName("password") private String password;
+    @SerializedName("timestamp") private String timestamp;
+    @SerializedName("CustomerPayBillOnline") private String transactionType;
+    @SerializedName("amount") private String amount;
+    @SerializedName("partyA") private String partyA;
+    @SerializedName("partyB") private String partyB;
+    @SerializedName("phoneNumber") private String phoneNumber;
+    @SerializedName("http://mpesa-requestbin.herokuapp.com/1lr1t2s1") private String callBackURL;
+    @SerializedName("Test") private String accountReference;
+    @SerializedName("Testing") private String transactionDesc;
 
     public STKPush(String businessShortCode, String password, String timestamp, String transactionType,
                    String amount, String partyA, String partyB, String phoneNumber, String callBackURL,

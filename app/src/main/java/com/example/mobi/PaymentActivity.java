@@ -33,6 +33,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Response;
 import timber.log.Timber;
 
 import static com.example.mobi.Constants.BUSINESS_SHORT_CODE;
@@ -48,26 +49,13 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     Double totalAmount = 1170.00;
 
 
-    @BindView(R.id.etPhonenumber)
-    EditText phonenumber;
-    @BindView(R.id.buttonReceipt)
-    Button buttonReceipt;
-    @BindView(R.id.buttonPay)
-    Button buttonPay;
-    @BindView(R.id.btnExit)
-    Button exitButton;
-    @BindView(R.id.btnExit)
-    TextView textViewName;
-    @BindView(R.id.btnExit)
-    TextView textViewAddress;
-    @BindView(R.id.txtPaybill)
-    TextView txtPaybill;
-    @BindView(R.id.tvTotal)
-    TextView total;
-    @BindView(R.id.textView2)
-    TextView tvTitle;
-    @BindView(R.id.shoppingCart)
-    ListView myCart;
+    @BindView(R.id.etPhonenumber) EditText phonenumber;
+    @BindView(R.id.buttonReceipt) Button buttonReceipt;
+    @BindView(R.id.buttonPay) Button buttonPay;
+    @BindView(R.id.txtPaybill) TextView txtPaybill;
+    @BindView(R.id.tvTotal) TextView total;
+    @BindView(R.id.textView2) TextView tvTitle;
+    @BindView(R.id.shoppingCart) ListView myCart;
 
 
     @Override
@@ -150,7 +138,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-    public void performSTKPush(String phone_number, String amount) {
+    public void performSTKPush(String phone_number,String amount) {
         mProgressDialog.setMessage("Processing your request");
         mProgressDialog.setTitle("Please Wait...");
         mProgressDialog.setIndeterminate(true);
@@ -170,36 +158,29 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                 "test"  //The transaction description
         );
 
+        mApiClient.setGetAccessToken(false);
 
-    mApiClient.setGetAccessToken(false);
-
-    mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
-        @Override
-        public void onResponse(Call<STKPush> call, retrofit2.Response<STKPush> response) {
-            mProgressDialog.dismiss();
-            try {
-                if (response.isSuccessful()) {
-                    Timber.d("post submitted to API. %s", response.body());
-                } else {
-                    Timber.e("Response %s", response.errorBody().string());
+        mApiClient.mpesaService().sendPush(stkPush).enqueue(new Callback<STKPush>() {
+            @Override
+            public void onResponse(@NonNull Call<STKPush> call, @NonNull Response<STKPush> response) {
+                mProgressDialog.dismiss();
+                try {
+                    if (response.isSuccessful()) {
+                        Timber.d("post submitted to API. %s", response.body());
+                    } else {
+                        Timber.e("Response %s", response.errorBody().string());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
             }
 
-        }
-
-        @Override
-        public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
-            mProgressDialog.dismiss();
-            Timber.e(t);
-        }
-    });
-}
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
+            @Override
+            public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
+                mProgressDialog.dismiss();
+                Timber.e(t);
+            }
+        });
     }
 
 }

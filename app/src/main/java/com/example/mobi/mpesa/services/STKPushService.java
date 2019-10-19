@@ -12,6 +12,7 @@ public interface STKPushService {
     @POST("mpesa/stkpush/v1/processrequest")
     Call<STKPush> sendPush(@Body STKPush stkPush);
 
+
     @GET("jobs/pending")
     Call<STKPush> getTasks();
 
