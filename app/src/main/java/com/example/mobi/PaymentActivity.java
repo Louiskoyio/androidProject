@@ -1,53 +1,55 @@
 package com.example.mobi;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
+
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.mobi.mpesa.ApiClient;
 import com.example.mobi.mpesa.Utils;
 import com.example.mobi.mpesa.model.AccessToken;
 import com.example.mobi.mpesa.model.STKPush;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
-
 import static com.example.mobi.Constants.BUSINESS_SHORT_CODE;
 import static com.example.mobi.Constants.CALLBACKURL;
 import static com.example.mobi.Constants.PARTYB;
 import static com.example.mobi.Constants.PASSKEY;
 import static com.example.mobi.Constants.TRANSACTION_TYPE;
+import 	android.widget.PopupWindow;
 
 public class PaymentActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ApiClient mApiClient;
+    private PopupWindow mPopupWindow;
+    private Activity mActivity;
+    private Context mContext;
     private ProgressDialog mProgressDialog;
     Double totalAmount = 1170.00;
-
+    private RelativeLayout mRelativeLayout;
 
     @BindView(R.id.etPhonenumber) EditText phonenumber;
     @BindView(R.id.buttonReceipt) Button buttonReceipt;
@@ -67,6 +69,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         mProgressDialog = new ProgressDialog(this);
         mApiClient = new ApiClient();
         mApiClient.setIsDebug(true);
+        mContext = getApplicationContext();
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.relativeLayout);
+
 
 
         buttonPay.setOnClickListener(this);
@@ -124,9 +129,22 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         switch (v.getId()) {
 
             case R.id.buttonPay:
+                LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+                View customView = inflater.inflate(R.layout.payment_popup,null);
+                mPopupWindow = new PopupWindow(
+                        customView,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT
+                );
+
+                if(Build.VERSION.SDK_INT>=21){
+                    mPopupWindow.setElevation(5.0f);
+                }
+                mPopupWindow.showAtLocation(mRelativeLayout, Gravity.CENTER,0,0);
+
                 String phone_number = phonenumber.getText().toString();
                 String amount = totalAmount.toString();
-                performSTKPush(phone_number, amount);
+                //performSTKPush(phone_number, amount);
                 break;
 
             case R.id.buttonReceipt:
@@ -137,6 +155,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
+
 
     public void performSTKPush(String phone_number,String amount) {
         mProgressDialog.setMessage("Processing your request");
@@ -179,6 +198,33 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
             public void onFailure(@NonNull Call<STKPush> call, @NonNull Throwable t) {
                 mProgressDialog.dismiss();
                 Timber.e(t);
+            }
+        });
+    }
+
+    public void openPaymentPopup(View view) {
+
+        // inflate the layout of the popup window
+        LayoutInflater inflater = (LayoutInflater)
+                getSystemService(LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.payment_popup, null);
+
+        // create the popup window
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        // dismiss the popup window when touched
+        popupView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                popupWindow.dismiss();
+                return true;
             }
         });
     }
