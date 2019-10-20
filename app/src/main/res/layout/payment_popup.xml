@@ -9,17 +9,17 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtEnterNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:fontFamily="sans-serif"
-        android:text="Enter your phone number\n(format: 254XXXXXXX)"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/txtEnterNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:fontFamily="sans-serif"
+            android:text="A payment request will be sent to your phone.\nEnter your phone number\n(format: 254XXXXXXX)"
+            android:textSize="18sp" />
 
     <EditText
         android:id="@+id/etPhoneNumber"
@@ -32,10 +32,11 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSTKRequest"
         android:layout_below="@+id/etPhoneNumber"
-
         android:layout_width="match_parent"
+        android:background="@drawable/shop_buttons"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:text="Send Payment Request" />
 </LinearLayout>

@@ -19,23 +19,6 @@
             android:layout_height="103dp"
             app:srcCompat="@drawable/ic_logo" />
 
-        <TextView
-            android:id="@+id/txtPaybill"
-            android:layout_width="372dp"
-            android:layout_height="37dp"
-            android:layout_marginTop="20dp"
-            android:text="Enter phone number(format: 254XXXXXXXX)"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/etPhonenumber"
-            android:layout_width="match_parent"
-            android:layout_height="43dp"
-            android:ems="10"
-            android:hint="Phone Number"
-            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textView2"

@@ -51,10 +51,9 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     Double totalAmount = 1170.00;
     private RelativeLayout mRelativeLayout;
 
-    @BindView(R.id.etPhonenumber) EditText phonenumber;
+
     @BindView(R.id.buttonReceipt) Button buttonReceipt;
     @BindView(R.id.buttonPay) Button buttonPay;
-    @BindView(R.id.txtPaybill) TextView txtPaybill;
     @BindView(R.id.tvTotal) TextView total;
     @BindView(R.id.textView2) TextView tvTitle;
     @BindView(R.id.shoppingCart) ListView myCart;
@@ -101,7 +100,6 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         Typeface appleFontBold = Typeface.createFromAsset(getAssets(), "fonts/SF-Bold.ttf");
 
         buttonPay.setTypeface(appleFontRegular);
-        txtPaybill.setTypeface(appleFontRegular);
         total.setTypeface(appleFontBold);
         total.setText("TOTAL: 1,170.00");
     }
@@ -141,10 +139,25 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                     mPopupWindow.setElevation(5.0f);
                 }
                 mPopupWindow.showAtLocation(mRelativeLayout, Gravity.CENTER,0,0);
+                mPopupWindow.setFocusable(true);
+                mPopupWindow.update();
 
-                String phone_number = phonenumber.getText().toString();
-                String amount = totalAmount.toString();
-                //performSTKPush(phone_number, amount);
+                Button btnSTKRequest = (Button) customView.findViewById(R.id.btnSTKRequest);
+                EditText phonenumber = (EditText) customView.findViewById(R.id.etPhoneNumber);
+
+                btnSTKRequest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String phone_number = phonenumber.getText().toString();
+                        String amount = totalAmount.toString();
+                        performSTKPush(phone_number, amount);
+                        mPopupWindow.dismiss();
+                    }
+                });
+
+
+
+
                 break;
 
             case R.id.buttonReceipt:
