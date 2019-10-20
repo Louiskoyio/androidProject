@@ -13,23 +13,33 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lipa na M-PESA"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/txtEnterNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:fontFamily="sans-serif"
             android:text="A payment request will be sent to your phone.\nEnter your phone number\n(format: 254XXXXXXX)"
-            android:textSize="18sp" />
+            android:textSize="22sp" />
 
-    <EditText
-        android:id="@+id/etPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtEnterNumber"
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtEnterNumber"
 
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="textPersonName" />
+            android:ems="10"
+            android:hint="Phone Number"
+            android:inputType="textPersonName"
+            android:textSize="22sp" />
 
     <Button
         android:id="@+id/btnSTKRequest"
