@@ -1,26 +1,83 @@
 package com.example.mobi;
 
+import android.content.Intent;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
-import com.example.mobi.models.Product;
-import com.example.mobi.mpesa.ApiClient;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    @BindView(R.id.btnShop) Button shopButton;
+    @BindView(R.id.rl1) RelativeLayout rl1;
+    @BindView(R.id.btnHelp) Button helpButton;
+    @BindView(R.id.btnExit) Button exitButton;
+    @BindView(R.id.welcometxt) TextView welcomeText;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-
-
+    Handler handler = new Handler();
+    private PreferenceHelper preferenceHelper;
+    private final int LaunchTask = 1;
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            rl1.setVisibility(View.VISIBLE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        preferenceHelper = new PreferenceHelper(this);
+
+        Typeface appleFont= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
+        Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
+
+        //setting fonts
+
+        welcomeText.setTypeface(appleFontBold);
+        shopButton.setTypeface(appleFont);
+        helpButton.setTypeface(appleFont);
+        exitButton.setTypeface(appleFont);
+
+        handler.postDelayed(runnable, 2000);
+
+        shopButton.setOnClickListener(this);
+        exitButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        //initiating the qr code scan
+
+        switch (v.getId()) {
+
+            case R.id.btnExit:
+                preferenceHelper.putIsLogin(false);
+                Intent intent = new Intent(MainActivity.this,MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                MainActivity.this.finish();
+
+                break;
 
 
+            case R.id.btnShop:
+                startActivity(new Intent(MainActivity.this,ShopActivity.class));
+                break;
+
+
+
+            default:
+                break;
+        }
     }
 }
