@@ -7,65 +7,70 @@
     tools:context=".ShopActivity"
     android:padding="20dp">
 
-    <Button
-        android:id="@+id/buttonScan"
-        android:layout_width="131dp"
-        android:layout_height="60dp"
-        android:layout_alignStart="@+id/shoppingCart"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginBottom="94dp"
-        android:background="@drawable/shop_buttons"
-        android:text="Scan iTEM"
-        android:textColor="@color/white" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/buttonPay"
-        android:layout_width="131dp"
-        android:layout_height="60dp"
-        android:layout_alignTop="@+id/buttonScan"
-        android:layout_alignEnd="@+id/shoppingCart"
-        android:background="@drawable/shop_buttons"
-        android:text="PROCEED TO PAY"
-        android:textColor="@color/white" />
+        <ImageView
+            android:id="@+id/imgLogo"
+            android:layout_width="match_parent"
+            android:layout_height="124dp"
+            app:srcCompat="@drawable/ic_logo" />
 
-    <ListView
-        android:id="@+id/shoppingCart"
-        android:layout_width="359dp"
-        android:layout_height="316dp"
-        android:layout_centerInParent="true"
-        android:scrollbarAlwaysDrawHorizontalTrack="false" >
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="Shopping Cart"
+            android:textColor="@color/black"
+            android:textSize="24dp"
+            android:textStyle="bold" />
 
-    </ListView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shoppingCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            >
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="373dp"
-        android:layout_height="51dp"
-        android:layout_above="@+id/shoppingCart"
-        android:layout_marginBottom="17dp"
-        android:text="Shopping Cart"
-        android:textColor="@color/black"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+        </androidx.recyclerview.widget.RecyclerView>
 
-    <TextView
-        android:id="@+id/tvTotal"
-        android:layout_width="359dp"
-        android:layout_height="32dp"
-        android:layout_below="@+id/shoppingCart"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="-2dp"
-        android:text="TOTAL:"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/txtTotal"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:layout_marginBottom="10dp"
+            android:text="TOTAL:"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="95dp"
-        android:layout_height="124dp"
-        android:layout_above="@+id/tvBalance"
-        android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_logo" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonScan"
+                android:layout_width="183dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginBottom="94dp"
+                android:background="@drawable/shop_buttons"
+                android:text="Scan iTEM"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/buttonPay"
+                android:layout_width="184dp"
+                android:layout_height="60dp"
+                android:background="@drawable/shop_buttons"
+                android:text="PROCEED TO PAY"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+
 </RelativeLayout>

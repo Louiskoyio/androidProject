@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import java.math.RoundingMode;
+
 import java.text.DecimalFormat;
 import android.widget.Toast;
 
@@ -25,48 +25,45 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 //implementing onclicklistener
 public class ShopActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //View Objects
-    private Button buttonScan;
-    Button buttonPay;
-    private TextView textViewName, textViewAddress;
-    ListView myCart;
-    TextView total, tvTitle;
+
     DatabaseReference ref;
     Double totalAmount=0.0;
-    int counter;
     ArrayList<Item> shoppingCartArr =new ArrayList<>();
-    public static final ArrayList<String> shoppingCart = new ArrayList<>();
+    ArrayList<String> shoppingCart = new ArrayList<>();
     ArrayAdapter<String> adapter;
+    private RecyclerAdapter mRecyclerAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
 
     private static DecimalFormat df2 = new DecimalFormat("#.##");
 
-    //qr code scanner object
     private IntentIntegrator qrScan;
+    @BindView(R.id.buttonScan) Button buttonScan;
+    @BindView(R.id.buttonPay) Button buttonPay;
+    @BindView(R.id.txtTotal) TextView total;
+    @BindView(R.id.txtTitle) TextView tvTitle;
+    @BindView(R.id.shoppingCart) RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+        ButterKnife.bind(this);
+        mRecyclerAdapter = new RecyclerAdapter(shoppingCartArr);
+        recyclerView.setAdapter(mRecyclerAdapter);
+        layoutManager = new GridLayoutManager(this,1);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
 
-
-        //View objects
-        buttonScan = (Button) findViewById(R.id.buttonScan);
-        buttonPay = (Button) findViewById(R.id.buttonPay);
-        myCart = (ListView) findViewById(R.id.shoppingCart);
-        total = (TextView) findViewById(R.id.tvTotal);
-        tvTitle = (TextView) findViewById(R.id.textView2);
-
-
-
-
-
-        adapter = new ArrayAdapter<>(ShopActivity.this, android.R.layout.simple_list_item_1,shoppingCart);
-        myCart.setAdapter(adapter);
 
         Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
         Typeface appleFontBold= Typeface.createFromAsset(getAssets(),"fonts/SF-Bold.ttf");
@@ -101,11 +98,15 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                         String brand = dataSnapshot.child("brand").getValue().toString();
                         String name = dataSnapshot.child("name").getValue().toString();
                         Double price = Double.parseDouble(dataSnapshot.child("price").getValue().toString());
+                        Item item = new Item();
+                        item.setBrand(brand);
+                        item.setName(name);
+                        item.setPrice(price);
 
-                        shoppingCartArr.add(new Item(name, price,brand));
-                        shoppingCart.add(brand+"\t\t\t\t"+name+"\t\t\t\t"+price);
+                        shoppingCartArr.add(item);
+                        mRecyclerAdapter.notifyDataSetChanged();
 
-                        adapter.notifyDataSetChanged();
+
                         totalAmount = totalAmount + price;
                         total.setText("TOTAL: " + totalAmount.toString());
                     }
@@ -131,7 +132,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                     break;
 
                 case R.id.buttonPay:
-                    startActivity(new Intent(ShopActivity.this, PaymentActivity.class));
+                    startActivity(new Intent(ShopActivity.this, PaymentActivity.class).putExtra("shoppingCart",shoppingCartArr).putExtra("totalAmount",totalAmount));
                     break;
 
                 default:

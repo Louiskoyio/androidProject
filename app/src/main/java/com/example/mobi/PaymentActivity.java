@@ -10,20 +10,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+
 import android.widget.RelativeLayout;
-import java.util.Arrays;
-import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mobi.models.Item;
 import com.example.mobi.mpesa.ApiClient;
@@ -36,7 +34,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
-import  static com.example.mobi.ShopActivity.;
+
 import static com.example.mobi.Constants.BUSINESS_SHORT_CODE;
 import static com.example.mobi.Constants.CALLBACKURL;
 import static com.example.mobi.Constants.PARTYB;
@@ -51,15 +49,16 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
     private Activity mActivity;
     private Context mContext;
     private ProgressDialog mProgressDialog;
-    Double totalAmount = 1170.00;
     private RelativeLayout mRelativeLayout;
+    private RecyclerAdapter mRecyclerAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
 
     @BindView(R.id.buttonReceipt) Button buttonReceipt;
     @BindView(R.id.buttonPay) Button buttonPay;
-    @BindView(R.id.tvTotal) TextView total;
-    @BindView(R.id.textView2) TextView tvTitle;
-    @BindView(R.id.shoppingCart) ListView myCart;
+    @BindView(R.id.txtTotal) TextView total;
+    @BindView(R.id.txtTitle) TextView tvTitle;
+    @BindView(R.id.shoppingCart) RecyclerView recyclerView;
 
 
     @Override
@@ -67,6 +66,14 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
+        layoutManager = new GridLayoutManager(this,1);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        ArrayList<Item> shoppingCart = (ArrayList<Item>) getIntent().getSerializableExtra("shoppingCart");
+        mRecyclerAdapter = new RecyclerAdapter(shoppingCart);
+        recyclerView.setAdapter(mRecyclerAdapter);
+
+
 
         mProgressDialog = new ProgressDialog(this);
         mApiClient = new ApiClient();
@@ -81,30 +88,13 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
 
         getAccessToken();
 
-        String[] bill = new String[]{
-                "Samsung USB Type C Charger              500.00",
-                "SparkleFresh Drinking Water 1 Litre       70.00",
-                "Logitech Wireless Mouse                       600.00"
-        };
-
-        final List<String> items_list = new ArrayList<String>(Arrays.asList(bill));
-
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
-                (this, android.R.layout.simple_list_item_1, items_list);
-
-        myCart.setAdapter(arrayAdapter);
-
-
-        ArrayList arrayList = new ArrayList<String>();
-        ArrayAdapter adapter = new ArrayAdapter<>(PaymentActivity.this, android.R.layout.simple_list_item_1, arrayList);
-
 
         Typeface appleFontRegular = Typeface.createFromAsset(getAssets(), "fonts/SF-Regular.ttf");
         Typeface appleFontBold = Typeface.createFromAsset(getAssets(), "fonts/SF-Bold.ttf");
 
         buttonPay.setTypeface(appleFontRegular);
         total.setTypeface(appleFontBold);
-        total.setText("TOTAL: 1,170.00");
+        total.setText("TOTAL: "+ getIntent().getSerializableExtra("totalAmount"));
     }
 
     public void getAccessToken() {
@@ -152,7 +142,7 @@ public class PaymentActivity extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onClick(View view) {
                         String phone_number = phonenumber.getText().toString();
-                        String amount = totalAmount.toString();
+                        String amount = getIntent().getSerializableExtra("totalAmount").toString();
                         performSTKPush(phone_number, amount);
                         mPopupWindow.dismiss();
                     }

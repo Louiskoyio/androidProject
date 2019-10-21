@@ -30,8 +30,8 @@ public class ReceiptActivity extends AppCompatActivity {
         buttonHome = (Button) findViewById(R.id.buttonReceipt);
         buttonPay = (Button) findViewById(R.id.buttonPay);
         myCart = (ListView) findViewById(R.id.shoppingCart);
-        total = (TextView) findViewById(R.id.tvTotal);
-        tvTitle = (TextView) findViewById(R.id.textView2);
+        total = (TextView) findViewById(R.id.txtTotal);
+        tvTitle = (TextView) findViewById(R.id.txtTitle);
         buttonHome = (Button) findViewById(R.id.buttonReceipt);
 
         String[] bill = new String[] {

@@ -22,12 +22,12 @@
         android:id="@+id/shoppingCart"
         android:layout_width="308dp"
         android:layout_height="183dp"
-        android:layout_above="@+id/tvTotal"
+        android:layout_above="@+id/txtTotal"
         android:layout_marginBottom="30dp"
         android:scrollbarAlwaysDrawHorizontalTrack="false" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/shoppingCart"
@@ -37,7 +37,7 @@
         android:textSize="24dp" />
 
     <TextView
-        android:id="@+id/tvTotal"
+        android:id="@+id/txtTotal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -47,7 +47,7 @@
         android:textSize="20dp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imgLogo"
         android:layout_width="71dp"
         android:layout_height="65dp"
         android:layout_above="@+id/tvBalance"

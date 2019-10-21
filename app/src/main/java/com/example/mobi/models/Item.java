@@ -1,6 +1,8 @@
 package com.example.mobi.models;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
     private String name;
     private Double price;
     private String brand;
