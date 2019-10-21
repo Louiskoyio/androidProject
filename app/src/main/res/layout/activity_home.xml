@@ -6,25 +6,38 @@
     android:paddingTop="60dp"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:layout_centerInParent="true">
+
 
     <ImageView
         android:id="@+id/applogo"
-        android:layout_width="118dp"
-        android:layout_height="117dp"
-
+        android:layout_width="97dp"
+        android:layout_height="85dp"
+        android:layout_marginLeft="22dp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_logo"
         android:layout_centerHorizontal="true"
-        app:srcCompat="@drawable/ic_logo" />
+        />
 
     <RelativeLayout
+        android:id="@+id/rl1"
         android:layout_width="match_parent"
-        android:layout_height="589dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="142dp"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:visibility="gone">
+
+
 
 
         <LinearLayout
@@ -57,16 +70,6 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/btnAddProduct"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_marginBottom="40px"
-                android:background="@drawable/shop_buttons"
-                android:text="add"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
-
-            <Button
                 android:id="@+id/btnExit"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -91,5 +94,5 @@
 
     </RelativeLayout>
 
-
+</RelativeLayout>
 </RelativeLayout>

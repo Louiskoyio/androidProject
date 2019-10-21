@@ -112,35 +112,6 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/rellay2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:visibility="gone">
-
-        <Button
-            android:id="@+id/btnCreate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/transparent"
-            android:text="create account"
-            android:textAllCaps="true" />
-
-        <Button
-            android:id="@+id/btnForgot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:background="@color/transparent"
-            android:text="forgot password"
-            android:textAllCaps="true" />
-
-    </RelativeLayout>
 
 
 </RelativeLayout>

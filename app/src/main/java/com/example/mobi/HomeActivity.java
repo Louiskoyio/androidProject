@@ -3,8 +3,10 @@ package com.example.mobi;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,12 +15,20 @@ import butterknife.ButterKnife;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     @BindView(R.id.btnShop) Button shopButton;
+    @BindView(R.id.rl1) RelativeLayout rl1;
     @BindView(R.id.btnHelp) Button helpButton;
     @BindView(R.id.btnExit) Button exitButton;
     @BindView(R.id.welcometxt) TextView welcomeText;
 
-
+    Handler handler = new Handler();
     private PreferenceHelper preferenceHelper;
+    private final int LaunchTask = 1;
+    Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            rl1.setVisibility(View.VISIBLE);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +47,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         shopButton.setTypeface(appleFont);
         helpButton.setTypeface(appleFont);
         exitButton.setTypeface(appleFont);
+
+        handler.postDelayed(runnable, 2000);
 
         shopButton.setOnClickListener(this);
         exitButton.setOnClickListener(this);
