@@ -24,6 +24,8 @@ import java.util.Arrays;
 import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.mobi.models.Item;
 import com.example.mobi.mpesa.ApiClient;
 import com.example.mobi.mpesa.Utils;
 import com.example.mobi.mpesa.model.AccessToken;
@@ -34,6 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import timber.log.Timber;
+import  static com.example.mobi.ShopActivity.;
 import static com.example.mobi.Constants.BUSINESS_SHORT_CODE;
 import static com.example.mobi.Constants.CALLBACKURL;
 import static com.example.mobi.Constants.PARTYB;

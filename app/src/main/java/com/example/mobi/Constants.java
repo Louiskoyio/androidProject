@@ -1,6 +1,12 @@
 package com.example.mobi;
 
+import com.example.mobi.models.Item;
+
+import java.util.ArrayList;
+
 public class Constants {
+
+
 
     public static final int CONNECT_TIMEOUT = 60 * 1000;
 

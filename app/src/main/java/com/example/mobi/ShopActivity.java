@@ -12,6 +12,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import android.widget.Toast;
 
+import com.example.mobi.models.Item;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,8 +38,11 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
     DatabaseReference ref;
     Double totalAmount=0.0;
     int counter;
-    ArrayList<String> shoppingCartArr;
+    ArrayList<Item> shoppingCartArr =new ArrayList<>();
+    public static final ArrayList<String> shoppingCart = new ArrayList<>();
     ArrayAdapter<String> adapter;
+
+
     private static DecimalFormat df2 = new DecimalFormat("#.##");
 
     //qr code scanner object
@@ -58,8 +62,10 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         tvTitle = (TextView) findViewById(R.id.textView2);
 
 
-        shoppingCartArr = new ArrayList<String>();
-        adapter = new ArrayAdapter<>(ShopActivity.this, android.R.layout.simple_list_item_1,shoppingCartArr);
+
+
+
+        adapter = new ArrayAdapter<>(ShopActivity.this, android.R.layout.simple_list_item_1,shoppingCart);
         myCart.setAdapter(adapter);
 
         Typeface appleFontRegular= Typeface.createFromAsset(getAssets(),"fonts/SF-Regular.ttf");
@@ -96,7 +102,9 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
                         String name = dataSnapshot.child("name").getValue().toString();
                         Double price = Double.parseDouble(dataSnapshot.child("price").getValue().toString());
 
-                        shoppingCartArr.add(brand + " " + name + "\t\t\t\t\t" + price);
+                        shoppingCartArr.add(new Item(name, price,brand));
+                        shoppingCart.add(brand+"\t\t\t\t"+name+"\t\t\t\t"+price);
+
                         adapter.notifyDataSetChanged();
                         totalAmount = totalAmount + price;
                         total.setText("TOTAL: " + totalAmount.toString());
