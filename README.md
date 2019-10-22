@@ -1,4 +1,4 @@
-# androidProject
+# MobiBuy
 
 MobiBuy
 This is an android app that allows users to scan their items, pay for them and get a receipt without having to queue. 
@@ -7,19 +7,22 @@ By Louis Koyio
 
 Setup/ installation Requirments for users Clone or download button. Unzip & run :)
 
-Setup/ installation Requirments for developers #Required JDK Maven IDE
 
-confirm by running
+Known Bugs 
 
-$ java --version //java version $ mvn --version //maven version $ gradle --version //gradle version
+So far none I have observed. However , I encourage feedback if you come across any bugs while using this app.
 
-then:
-
-setup/Installation Requirements for developers Fork this repository into your account Clone the app using the clone link provided https://github.com/Louiskoyio/FiveASide Open your terminal and it should be in your local repository Open your favorite text editor
-
-Known Bugs So far none I have observed. However , I encourage feedback if you come across any bugs while using this app.
-
-Technologies Java Language Gradle Spark framework
+Technologies Used
+ZXing Scanner Library
+RetroFit
+OkHTTP
+Okio
+Gson
+Firebase
+Butterknife
+M-PESA Daraja API
+M-PESA STKPush 
+Timber
 
 License MIT License
 
