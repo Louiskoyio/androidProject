@@ -13,14 +13,23 @@ So far none I have observed. However , I encourage feedback if you come across a
 # Technologies Used:
 
 ZXing Scanner Library
+
 RetroFit
+
 OkHTTP
+
 Okio
+
 Gson
+
 Firebase
+
 Butterknife
+
 M-PESA Daraja API
+
 M-PESA STKPush 
+
 Timber
 
 
