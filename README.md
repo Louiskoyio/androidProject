@@ -8,22 +8,34 @@ By Louis Koyio
 Setup/ installation Requirments for users Clone or download button. Unzip & run :)
 
 
-Known Bugs 
+# Known Bugs 
 
 So far none I have observed. However , I encourage feedback if you come across any bugs while using this app.
 
-Technologies Used
+# Technologies Used:
 
-**ZXing Scanner Library
-**RetroFit
-**OkHTTP
-**Okio
-**Gson
-**Firebase
-**Butterknife
-**M-PESA Daraja API
-**M-PESA STKPush 
-**Timber
+ZXing Scanner Library
+
+RetroFit
+
+OkHTTP
+
+Okio
+
+Gson
+
+Firebase
+
+Butterknife
+
+M-PESA Daraja API
+
+M-PESA STKPush 
+
+Timber
+
+
+
 
 License MIT License
 
