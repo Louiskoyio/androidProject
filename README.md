@@ -3,14 +3,12 @@ This is an android app that allows users to scan their items, pay for them and g
 
 By Louis Koyio 
 
-Setup/ installation Requirments for users Clone or download button. Unzip & run :)
-
 
 # Known Bugs 
 
 So far none I have observed. However , I encourage feedback if you come across any bugs while using this app.
 
-# Technologies Used:
+# Technologies Used
 
 ZXing Scanner Library
 
@@ -33,8 +31,7 @@ M-PESA STKPush
 Timber
 
 
-
-
+# Licence
 License MIT License
 
 Copyright (c) 2019 Louis Koyio
