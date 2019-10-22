@@ -1,6 +1,4 @@
 # MobiBuy
-
-MobiBuy
 This is an android app that allows users to scan their items, pay for them and get a receipt without having to queue. 
 
 By Louis Koyio 
@@ -15,23 +13,14 @@ So far none I have observed. However , I encourage feedback if you come across a
 # Technologies Used:
 
 ZXing Scanner Library
-
 RetroFit
-
 OkHTTP
-
 Okio
-
 Gson
-
 Firebase
-
 Butterknife
-
 M-PESA Daraja API
-
 M-PESA STKPush 
-
 Timber
 
 
