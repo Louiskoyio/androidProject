@@ -13,6 +13,7 @@ Known Bugs
 So far none I have observed. However , I encourage feedback if you come across any bugs while using this app.
 
 Technologies Used
+
 ZXing Scanner Library
 RetroFit
 OkHTTP
