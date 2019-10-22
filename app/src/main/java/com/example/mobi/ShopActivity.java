@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
-
 import java.text.DecimalFormat;
 import android.widget.Toast;
-
 import com.example.mobi.models.Item;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -20,14 +17,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-
 import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -74,6 +68,7 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
         total.setTypeface(appleFontBold);
         //intializing scan object
         qrScan = new IntentIntegrator(this);
+        qrScan.setBeepEnabled(false).setOrientationLocked(false);
 
 
         buttonScan.setOnClickListener(this);
@@ -105,6 +100,8 @@ public class ShopActivity extends AppCompatActivity implements View.OnClickListe
 
                         shoppingCartArr.add(item);
                         mRecyclerAdapter.notifyDataSetChanged();
+
+
 
 
                         totalAmount = totalAmount + price;

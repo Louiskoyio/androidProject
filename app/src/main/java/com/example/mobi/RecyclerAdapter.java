@@ -1,5 +1,6 @@
 package com.example.mobi;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,13 @@ import com.example.mobi.models.Item;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemHolder > {
 
     private ArrayList<Item> shoppingCart;
+    private RecyclerAdapter mRecyclerAdapter;
+
+
 
     public RecyclerAdapter( ArrayList<Item> shoppingCart){
 
@@ -26,7 +28,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemHo
 
 
     }
-
 
 
 
@@ -42,10 +43,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemHo
     @Override
     public void onBindViewHolder(@NonNull ItemHolder holder, int position)
     {
-
+        
         Item item = shoppingCart.get(position);
         holder.txtItemName.setText(item.getBrand()+" "+item.getName());
         holder.txtPrice.setText(item.getPrice().toString());
+
 
 
     }
@@ -54,6 +56,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemHo
     public int getItemCount() {
         return shoppingCart.size();
     }
+
 
     public static class ItemHolder extends RecyclerView.ViewHolder
     {
@@ -67,6 +70,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemHo
             txtItemName = itemView.findViewById(R.id.txtItemName);
             txtPrice = itemView.findViewById(R.id.txtPrice);
             btnRemove = itemView.findViewById(R.id.btnRemove);
+
+
 
         }
     }
